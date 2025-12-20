@@ -1,0 +1,154 @@
+{
+  "components": [
+    {
+      "id": "webhook_1",
+      "provider": "webhook",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {
+          "secureParameters": {
+            "secure": [],
+            "token": "ToIyPoSGQk2sB2Mw+p3jh6W5eGXGZoLss3iDJ6wYOiAXXQ=="
+          }
+        },
+        "type": "webhook"
+      },
+      "ui": {
+        "position": {
+          "x": 140,
+          "y": 240
+        },
+        "measured": {
+          "width": 150,
+          "height": 36
+        },
+        "data": {
+          "provider": "webhook",
+          "class": "default",
+          "type": "default"
+        },
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "llm_perplexity_1",
+      "provider": "llm_perplexity",
+      "config": {
+        "profile": "sonar-pro",
+        "sonar-pro": {}
+      },
+      "ui": {
+        "position": {
+          "x": 700,
+          "y": 280
+        },
+        "measured": {
+          "width": 150,
+          "height": 36
+        },
+        "data": {
+          "provider": "llm_perplexity",
+          "class": "llm",
+          "type": "default"
+        },
+        "formDataValid": false
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "prompt_1"
+        }
+      ]
+    },
+    {
+      "id": "prompt_1",
+      "provider": "prompt",
+      "config": {
+        "instructions": [
+          "Analyze the following text and determine whether it is: - AI-generated - Human-written - Uncertain / mixed  Evaluate based on: - Writing style consistency - Predictability and repetition - Use of generic phrasing - Lack of personal voice or lived experience - Structural patterns common in AI outputs  Return your response in this exact format:  Classification: <AI-generated / Human-written / Uncertain> Confidence: <percentage> Reasoning: - Point 1 - Point 2 - Point 3  Text to analyze:"
+        ]
+      },
+      "ui": {
+        "position": {
+          "x": 520,
+          "y": 260
+        },
+        "measured": {
+          "width": 150,
+          "height": 36
+        },
+        "data": {
+          "provider": "prompt",
+          "class": "text",
+          "type": "default"
+        },
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "text",
+          "from": "parse_1"
+        }
+      ]
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "config": {
+        "laneName": "answers"
+      },
+      "ui": {
+        "position": {
+          "x": 860,
+          "y": 280
+        },
+        "measured": {
+          "width": 150,
+          "height": 36
+        },
+        "data": {
+          "provider": "response_answers",
+          "class": "infrastructure",
+          "type": "default"
+        },
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "llm_perplexity_1"
+        }
+      ]
+    },
+    {
+      "id": "parse_1",
+      "provider": "parse",
+      "config": {},
+      "ui": {
+        "position": {
+          "x": 320,
+          "y": 180
+        },
+        "measured": {
+          "width": 150,
+          "height": 36
+        },
+        "data": {
+          "provider": "parse",
+          "class": "data",
+          "type": "default"
+        },
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "tags",
+          "from": "webhook_1"
+        }
+      ]
+    }
+  ],
+  "servicesVersion": 1,
+  "id": "355d5f68-4115-4be3-bc32-9bced83a8c4b"
+}
