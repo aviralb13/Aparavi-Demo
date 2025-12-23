@@ -2,10 +2,20 @@
 
 A lightweight React + Vite client that submits PDF documents to Aparavi's AI detection webhook and returns a classification (AI vs. human), confidence score, and the model's reasoning. The UI lives in `Aparavi_Project` and provides a simple upload form plus formatted reasoning output.
 
+Goals
+- Demo an AI-based detection pipeline
+- Show integration with Aparavi (ingest → classify → metadata enrichment)
+- Provide a small dashboard/report layer for reviewers
+
 ## Tech stack
 - React 19 with Vite 7
 - Tailwind (utility classes pulled in via CDN; minimal custom CSS)
 - React Markdown for rendering model reasoning
+
+## Clone the repo
+1) Choose a folder on your machine for the project.
+2) Run `git clone https://github.com/aviralb13/Aparavi-Demo` (replace with the actual repo URL).
+3) Change into the project directory with `cd Aparavi-Demo` (or the folder name used after cloning).
 
 ## Getting started
 1) Prerequisites: Node.js 18+ and npm.
